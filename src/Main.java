@@ -7,10 +7,11 @@ public class Main {
         boolean running = true;
 
         while (running) {
-            System.out.println(Library.NAME + " Kütüphane Yönetim Sistemi'ne hoş geldiniz!");
             System.out.println("---------------------------------");
+            System.out.println(Library.NAME + " Kütüphane Yönetim Sistemi'ne hoş geldiniz!");
+            System.out.println("------");
             System.out.println("MENU:");
-            System.out.println("1.Kitap Ekle: ");
+            System.out.println("1. Kitap Ekle: ");
             System.out.println("2. Kitap Seç: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
             System.out.println("3. Kitap Bilgilerini Güncelle: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
             System.out.println("4. Kitap Sil: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
