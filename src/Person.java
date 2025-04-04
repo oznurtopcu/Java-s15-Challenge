@@ -6,4 +6,8 @@ public abstract class Person {
     }
 
     public abstract void whoyouare();
+
+    public String getName() {
+        return name;
+    }
 }
