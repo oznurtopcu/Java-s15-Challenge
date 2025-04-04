@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Library library = Library.getInstance();
         Scanner scanner = new Scanner(System.in);
         boolean running = true;
 
         while (running) {
-            System.out.println("Kütüphane Yönetim Sistemi'ne hoş geldiniz!");
+            System.out.println(Library.NAME + " Kütüphane Yönetim Sistemi'ne hoş geldiniz!");
             System.out.println("---------------------------------");
             System.out.println("MENU:");
             System.out.println("1.Kitap Ekle: ");
