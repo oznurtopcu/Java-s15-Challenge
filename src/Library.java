@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Library {
@@ -9,7 +10,7 @@ public class Library {
     private static Library instance;
 
     private List<Book> books;
-    private List<Author> authors;
+    private Set<Author> authors;
 
     private Library() {
         this.books = new ArrayList<>();
