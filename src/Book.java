@@ -1,23 +1,38 @@
-import java.time.LocalDate;
-
-public class Book {
+public abstract class Book {
     private long id;
     private String author;
     private String name;
-    private double price;
-    private String status;
-    private String edition;
+    private boolean isBorrowed;
     private String date;
+    private String owner;
 
-    public Book(long id, String author, String name, double price, String status, String edition, String date) {
+    public Book(long id, String author, String name) {
         this.id = id;
         this.author = author;
         this.name = name;
-        this.price = price;
-        this.status = status;
-        this.edition = edition;
-        this.date = date;
+        this.isBorrowed = false;
+
     }
 
-
+    public String getAuthor() {
+        return author;
+    }
+    public String getName() {
+        return name;
+    }
+    public String getOwner() {
+        return owner;
+    }
+    public void changeOwner(String owner) {
+        this.owner = owner;
+    }
+    public void updateStatus() {
+        this.isBorrowed = !isBorrowed;
+    }
+    public void displayInfo() {
+        System.out.println( "Kitap ID: " + id + " " +
+                "Kitap adı: " + name + " " +
+                "Kitap Yazarı: " + author
+                );
+    }
 }
