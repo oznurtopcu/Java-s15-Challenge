@@ -29,6 +29,12 @@ public class Main {
             switch (choice) {
                 case 1:
                     System.out.println("Kitap ekleme menüsü aktif.");
+                    library.addBook(new Book(1L, "Oğuz Atay", "Tutunamayanlar") {
+                    });
+                    library.addBook(new Book(2L, "George Orwell", "1984") {
+                    });
+                    library.addBook(new Book(3L, "Anthony Burgess", "Otomatik Portakal") {
+                    });
                     break;
                 case 2:
                     System.out.println("Kitap seçme menüsü aktif.");
