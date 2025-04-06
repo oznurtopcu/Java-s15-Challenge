@@ -4,16 +4,20 @@ public abstract class Book {
     private long id;
     private Author author;
     private String name;
+    private int price;
+    private int edition;
     private BookStatus status;
-    private LocalDate date;
+    private LocalDate dateOfPurchase;
     private Reader owner;
 
-    public Book(long id, Author author, String name) {
+    public Book(long id, Author author, String name, int price, int edition) {
         this.id = id;
         this.author = author;
         this.name = name;
+        this.price = price;
+        this.edition = edition;
         this.status = BookStatus.AVAILABLE;
-        this.date = LocalDate.now();
+        this.dateOfPurchase = LocalDate.now();
     }
 
     public long getId() {
@@ -28,13 +32,27 @@ public abstract class Book {
     public BookStatus getStatus() {
         return status;
     }
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getDateOfPurchase() {
+        return dateOfPurchase;
     }
     public Reader getOwner() {
         return owner;
     }
+    public int getPrice() {
+        return price;
+    }
 
+    public int getEdition() {
+        return edition;
+    }
+
+    public void setEdition(int edition) {
+        this.edition = edition;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
     public void setId(long id) {
         this.id = id;
     }
@@ -47,8 +65,8 @@ public abstract class Book {
         this.author = author;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setDateOfPurchase(LocalDate date) {
+        this.dateOfPurchase = date;
     }
     public void changeOwner(Reader owner) {
         this.owner = owner;
@@ -65,7 +83,7 @@ public abstract class Book {
                 ", author='" + author + '\'' +
                 ", name='" + name + '\'' +
                 ", status=" + status +
-                ", date=" + date +
+                ", date=" + dateOfPurchase +
                 ", owner='" + owner + '\'' +
                 '}';
     }
