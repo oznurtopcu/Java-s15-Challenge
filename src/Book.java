@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Objects;
 
 public abstract class Book {
     private long id;
@@ -86,5 +87,17 @@ public abstract class Book {
                 ", date=" + dateOfPurchase +
                 ", owner='" + owner + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return id == book.id && Objects.equals(author, book.author) && Objects.equals(name, book.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, author, name);
     }
 }
