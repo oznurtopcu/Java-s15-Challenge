@@ -9,12 +9,7 @@ public class Author extends Person{
         super(name);
     }
 
-    @Override
-    public void whoyouare() {
-        System.out.println("I am an author. My name is" + getName());
-    }
-
-    public void newBook(Book book) {
+    public void addNewBook(Book book) {
 
         if(book.getAuthor().getName().equals(getName())) {
             booksWritten.add(book);
@@ -23,9 +18,27 @@ public class Author extends Person{
     }
 
     public void showBook() {
-        System.out.println(getName() + "'s Book List: ");
-        for(Book book: booksWritten) {
-            System.out.println(" - " + book.getName());
+
+        if (booksWritten.isEmpty()) {
+            System.out.println(getName() + " yazarına ait kitap bulunamadı.");
+        } else {
+            System.out.println(getName() + " tarafından yazılmış kitaplar:");
+            for (Book book : booksWritten) {
+                System.out.println("- " + book.getName());
+            }
         }
+    }
+
+    @Override
+    public void whoyouare() {
+        System.out.println("I am an author. My name is" + getName());
+    }
+
+    @Override
+    public String toString() {
+        return "Author{name='" +
+                getName() +
+                "booksWritten=" + booksWritten.size() +
+                '}';
     }
 }
