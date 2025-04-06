@@ -9,12 +9,10 @@ public class Library {
 
     private Map<Long,Book> books;
     private List<Reader> readers;
-//    private Map<Long, String> librarians;
 
     private Library() {
         this.books = new HashMap<>();
         this.readers = new ArrayList<>();
-//        this.librarians = new LinkedHashMap<>();
     }
 
     public static Library getInstance() {
@@ -23,6 +21,8 @@ public class Library {
         }
         return instance;
     }
+
+
 //    BIR ONCEKI COMMITTEN KALAN KODLAR
 //
 //    public void addBook(Book book) {
@@ -46,20 +46,6 @@ public class Library {
 //
 //
 
-    public void addBook(Book book) {
-        if(!books.containsKey(book.getId()))
-            books.put(book.getId(), book);
-        System.out.println("Kitap ekleme işlemi başarılı!");
-    }
-
-    public void lendBook(Book book, Reader reader) {
-        reader.borrowBook(book);
-    }
-
-    public boolean takeBackBook(Book book, Reader reader) {
-       return reader.returnBook(book);
-    }
-
     public Map<Long, Book> getBooks(){
         return Collections.unmodifiableMap(books);
     }
@@ -68,43 +54,58 @@ public class Library {
         return Collections.unmodifiableList(readers);
     }
 
+    public void addNewBook(Book book) {
+        if(!books.containsKey(book.getId()))
+            books.put(book.getId(), book);
+        System.out.println("Kitap ekleme işlemi başarılı!");
+    }
 
-//    public List<Book> getBook(String bookName) {
-//        List<Book> matching = new ArrayList<>();
-//
-//        for (Book book: books.values()) {
-//            if(book.getName().equalsIgnoreCase(bookName)) {
-//                matching.add(book);
-//            }
-//        }
-//        return  matching;
-//    }
+    public boolean lendBook(Book book, Reader reader) {
+        if (reader.borrowBook(book)) {
+            System.out.println(reader.getName() + " kitabı ödünç aldı: " + book.getName());
+        } else {
+            System.out.println("Kitap ödünç verilemedi: " + book.getName());
+        }
 
-//    public Book getBookById(long id) {
-//        return books.get(id);
-//    }
-//
-//    public List<Book> getBookByName(String name) {
-//        List<Book> matching = new ArrayList<>();
-//
-//        for (Book book: books.values()) {
-//            if(book.getName().equalsIgnoreCase(name)) {
-//                matching.add(book);
-//            }
-//        }
-//        return matching;
-//    }
-//
-//    public List<Book> getBookByAuthor(String author) {
-//        List<Book> matching = new ArrayList<>();
-//
-//        for (Book book: books.values()) {
-//            if(book.getAuthor().getName().equalsIgnoreCase(author)) {
-//                matching.add(book);
-//            }
-//        }
-//        return matching;
-//    }
+        return reader.borrowBook(book);
+    }
+
+    public boolean takeBackBook(Book book, Reader reader) {
+        return reader.returnBook(book);
+    }
+
+    public void showBook() {
+        System.out.println(NAME + "'s Book List: ");
+        for(Book book: books.values()) {
+            System.out.println("ID: " + book.getId() + "NAME: " + book.getName() + "AUTHOR: " + book.getAuthor().getName());
+        }
+    }
+
+    public Book getBookById(long id) {
+        return books.get(id);
+    }
+
+    public List<Book> getBookByName(String name) {
+        List<Book> matching = new ArrayList<>();
+
+        for (Book book: books.values()) {
+            if(book.getName().trim().equalsIgnoreCase(name.trim())) {
+                matching.add(book);
+            }
+        }
+        return matching;
+    }
+
+    public List<Book> getBookByAuthor(String author) {
+        List<Book> matching = new ArrayList<>();
+
+        for (Book book: books.values()) {
+            if(book.getAuthor().getName().trim().equalsIgnoreCase(author.trim())) {
+                matching.add(book);
+            }
+        }
+        return matching;
+    }
 
 
 
