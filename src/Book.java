@@ -93,11 +93,11 @@ public abstract class Book {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return id == book.id && Objects.equals(author, book.author) && Objects.equals(name, book.name);
+        return id == book.id ; //&& Objects.equals(author, book.author) && Objects.equals(name, book.name)
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, author, name);
+        return Objects.hash(id); //author, name
     }
 }
