@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Library {
 
@@ -13,6 +12,7 @@ public class Library {
     private Library() {
         this.books = new HashMap<>();
         this.readers = new ArrayList<>();
+//      Librarian librarian = new Librarian("user1", "123456", this);
     }
 
     public static Library getInstance() {
@@ -22,29 +22,6 @@ public class Library {
         return instance;
     }
 
-
-//    BIR ONCEKI COMMITTEN KALAN KODLAR
-//
-//    public void addBook(Book book) {
-//        if(books == null) {
-//            books = new ArrayList<>();
-//        }
-//        if(!books.contains(book))
-//            books.add(book);
-//
-//        for(Book showbook: books) {
-//            showbook.displayInfo();
-//        }
-//        System.out.println("Kitap ekleme işlemi başarılı!");
-//    }
-//
-//    public List<Book> getBooks() {
-//        return books.stream().collect(Collectors.toUnmodifiableList());
-//        //stream'e dönüştürerek listenin bir kopyasını gönderdik
-//        //salt okunabilir, değiştirilemez, set edilemez
-//    }
-//
-//
 
     public Map<Long, Book> getBooks(){
         return Collections.unmodifiableMap(books);
