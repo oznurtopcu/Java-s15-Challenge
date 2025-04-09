@@ -2,7 +2,9 @@ import models.book.Book;
 import models.book.Journals;
 import models.book.Magazines;
 import models.book.StudyBooks;
+import models.enums.BookStatus;
 import models.person.Author;
+import models.person.Reader;
 
 import java.util.List;
 import java.util.Scanner;
@@ -46,6 +48,9 @@ public class Main {
                 case 7:
                     deleteBook();
                     break;
+                case 8:
+                    borrowBook();
+                    break;
                 case 0:
                     isRunning = false;
                     System.out.println("Çıkış yapılıyor!");
@@ -68,6 +73,7 @@ public class Main {
         System.out.println("5 - Kategorinin Tüm Kitaplarını Listele");
         System.out.println("6 - Yazarın Tüm Kitaplarını Listele");
         System.out.println("7 - Kitap Sil");
+        System.out.println("8 - Kitap Ödünç Al");
         System.out.println("0 - Çıkış");
 
 //       System.out.println("3. Kitap Bilgilerini Güncelle: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
@@ -225,4 +231,42 @@ public class Main {
         }
     }
 
+    private static void borrowBook() {
+        System.out.print("Okuyucu adını girin: ");
+        String readerName = scanner.nextLine();
+
+        Reader foundReader = null;
+        for (Reader reader : library.getReaders()) {
+            if (reader.getName().equalsIgnoreCase(readerName)) {
+                foundReader = reader;
+                break;
+            }
+        }
+
+        if (foundReader == null) {
+            System.out.println("Okuyucu bulunamadı!");
+            //TODO: eğer okuyucu bulunamadıysa yeni okuyucu olarak kaydedilebilir
+            return;
+        }
+
+        System.out.print("Ödünç alınacak kitabın ID'sini girin: ");
+        long bookId = Long.parseLong(scanner.nextLine());
+
+        Book bookToBorrow = library.getBookById(bookId);
+
+        if (bookToBorrow == null) {
+            System.out.println("Kitap bulunamadı!");
+            return;
+        }
+
+        if (bookToBorrow.getStatus() != BookStatus.AVAILABLE) {
+            System.out.println("Kitap kiralanmaya müsait değil. Kitap durumu: " );
+//            if(bookToBorrow.getStatus() == BookStatus.BORROWED) System.out.println("Kiralanmış");
+//            if(bookToBorrow.getStatus() == BookStatus.SOLD) System.out.println("Satın alınmış");
+            return;
+        }
+
+        library.lendBook(bookToBorrow, foundReader);
+
+    }
 }
