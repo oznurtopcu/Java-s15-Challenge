@@ -1,6 +1,11 @@
+import models.book.Book;
+import models.book.Journals;
+import models.book.Magazines;
+import models.book.StudyBooks;
+import models.person.Author;
+
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Main {
 
@@ -115,7 +120,7 @@ public class Main {
                 return;
         }
 
-        // Kitabı yazara ekle (Author sınıfında addBook metodunun var olduğunu varsayıyoruz.)
+        // Kitabı yazara ekle (models.person.Author sınıfında addBook metodunun var olduğunu varsayıyoruz.)
         author.addNewBook(newBook);
 
         // Kitabı kütüphaneye ekle

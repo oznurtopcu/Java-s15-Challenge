@@ -1,7 +1,11 @@
+package models.person;
+
+import models.book.Book;
+
 import java.util.HashSet;
 import java.util.Set;
 
-public class Author extends Person{
+public class Author extends Person {
 
     private Set<Book> booksWritten = new HashSet<>();
 
@@ -36,7 +40,7 @@ public class Author extends Person{
 
     @Override
     public String toString() {
-        return "Author { name=' " +
+        return " Author { name=' " +
                 getName() +
                 " booksWritten= " + booksWritten.size() +
                 '}';

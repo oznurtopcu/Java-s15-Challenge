@@ -1,3 +1,10 @@
+import models.book.Book;
+import models.book.Journals;
+import models.book.Magazines;
+import models.book.StudyBooks;
+import models.person.Author;
+import models.person.Reader;
+
 import java.util.*;
 
 public class Library {

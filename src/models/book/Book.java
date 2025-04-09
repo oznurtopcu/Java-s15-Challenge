@@ -1,3 +1,9 @@
+package models.book;
+
+import models.enums.BookStatus;
+import models.person.Author;
+import models.person.Reader;
+
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -79,7 +85,7 @@ public abstract class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return " Book {" +
                 "id=" + id +
                 ", author='" + author + '\'' +
                 ", name='" + name + '\'' +

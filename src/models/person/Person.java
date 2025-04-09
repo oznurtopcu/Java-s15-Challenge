@@ -1,3 +1,5 @@
+package models.person;
+
 import java.util.Objects;
 
 public abstract class Person {
@@ -31,7 +33,7 @@ public abstract class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "models.person.Person{" +
                 "name='" + name + '\'' +
                 '}';
     }

@@ -1,7 +1,12 @@
+package models.person;
+
+import models.book.Book;
+import models.enums.BookStatus;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Reader extends Person{
+public class Reader extends Person {
 
     private List<Book> borrowedBooks = new ArrayList<>();
 
@@ -62,7 +67,7 @@ public class Reader extends Person{
 
     @Override
     public String toString() {
-        return "Reader{name='" +
+        return "models.person.Reader{name='" +
                 getName() +
                 "borrowedBooks=" + borrowedBooks.size() +
                 '}';

@@ -1,4 +1,8 @@
-public class StudyBooks extends Book{
+package models.book;
+
+import models.person.Author;
+
+public class StudyBooks extends Book {
 
     public StudyBooks(long id, Author author, String name, int price, int edition) {
         super(id, author, name, price, edition);
@@ -6,6 +10,6 @@ public class StudyBooks extends Book{
 
     @Override
     public void displayInfo() {
-        System.out.println("Study Book");
+        System.out.println("Study models.book.Book");
     }
 }
