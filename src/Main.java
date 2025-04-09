@@ -43,6 +43,9 @@ public class Main {
                 case 6:
                     searchBookByAuthor();
                     break;
+                case 7:
+                    deleteBook();
+                    break;
                 case 0:
                     isRunning = false;
                     System.out.println("Çıkış yapılıyor!");
@@ -64,6 +67,7 @@ public class Main {
         System.out.println("4 - Kitap ara (İsim ile)");
         System.out.println("5 - Kategorinin Tüm Kitaplarını Listele");
         System.out.println("6 - Yazarın Tüm Kitaplarını Listele");
+        System.out.println("7 - Kitap Sil");
         System.out.println("0 - Çıkış");
 
 //       System.out.println("3. Kitap Bilgilerini Güncelle: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
@@ -206,6 +210,19 @@ public class Main {
             library.showBook(books);
         }
 
+    }
+
+    private static void deleteBook() {
+        System.out.println("Silinecek Kitap ID Bilgisini Giriniz: ");
+        long id = Long.parseLong(scanner.nextLine());
+
+        Book bookToDelete = library.getBookById(id);
+        if (bookToDelete != null) {
+            library.deleteBook(bookToDelete);
+            System.out.println(bookToDelete.getId() + " ID'li kitap başarıyla silindi.");
+        } else {
+            System.out.println("Bu ID ile eşleşen bir kitap bulunamadı.");
+        }
     }
 
 }
