@@ -58,6 +58,12 @@ public class Library {
         }
     }
 
+    public void showBook(List<Book> books) {
+        for(Book book: books) {
+            System.out.println("ID: " + book.getId() + "NAME: " + book.getName() + "AUTHOR: " + book.getAuthor().getName());
+        }
+    }
+
     public Book getBookById(long id) {
         return books.get(id);
     }
