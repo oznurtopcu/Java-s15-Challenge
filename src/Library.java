@@ -42,6 +42,14 @@ public class Library {
             new Magazines(405L, new Author("Bill Gates"), "Innovation Quarterly", 35, 1)
     };
 
+    Reader[] initialReaders = {
+            new Reader("Elif"),
+            new Reader("Mert"),
+            new Reader("Zeynep"),
+            new Reader("Ahmet"),
+            new Reader("Deniz")
+    };
+
 
 
     private Library() {
@@ -53,6 +61,8 @@ public class Library {
             books.put(book.getId(), book);
             book.getAuthor().addNewBook(book);
         }
+
+        this.readers.addAll(Arrays.asList(initialReaders));
     }
 
     public static Library getInstance() {
