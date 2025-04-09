@@ -1,5 +1,9 @@
+import models.book.Book;
+import models.enums.BookStatus;
+import models.enums.MemberType;
+import models.person.Reader;
+
 import java.util.List;
-import java.util.Objects;
 
 public class Librarian {
     private String username;
@@ -50,7 +54,7 @@ public class Librarian {
     //okuyucu belli değilse, önce okuyucuyu bulup
     public boolean returnBook(Book book) {
         if(book.getStatus().equals(BookStatus.BORROWED)) {
-//            book.updateStatus(BookStatus.AVAILABLE);
+//            book.updateStatus(models.enums.BookStatus.AVAILABLE);
 //            book.changeOwner(null);
 
             for(Reader reader: library.getReaders()) {

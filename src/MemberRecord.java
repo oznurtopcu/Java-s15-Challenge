@@ -1,3 +1,5 @@
+import models.enums.MemberType;
+
 import java.time.LocalDate;
 
 public class MemberRecord {

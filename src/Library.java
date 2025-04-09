@@ -51,6 +51,7 @@ public class Library {
 
         for (Book book : initialBooks) {
             books.put(book.getId(), book);
+            book.getAuthor().addNewBook(book);
         }
     }
 
