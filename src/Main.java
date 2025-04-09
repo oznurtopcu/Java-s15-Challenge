@@ -1,86 +1,206 @@
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Main {
+
+    private static final Library library = Library.getInstance();
+    private static final Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Library library = Library.getInstance();
-        Scanner scanner = new Scanner(System.in);
-        boolean running = true;
 
-//        while (running) {
-//            System.out.println("---------------------------------");
-//            System.out.println(Library.NAME + " Kütüphane Yönetim Sistemi'ne hoş geldiniz!");
-//            System.out.println("------");
-//            System.out.println("MENU:");
-//            System.out.println("1. Kitap Ekle: ");
-//            System.out.println("2. Kitap Seç: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
-//            System.out.println("3. Kitap Bilgilerini Güncelle: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
-//            System.out.println("4. Kitap Sil: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
-//            System.out.println("5. Kategorinin Tüm Kitaplarını Listele: ");
-//            System.out.println("6. Yazarın Tüm Kitaplarını Listele: ");
-//            System.out.println("7. Kitabı Ödünç Al: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
-//            System.out.println("8. Kitabı Teslim Et: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
-//            System.out.println("9. Çıkış Yap: ");
-//            System.out.println("---------------------------------");
-//            System.out.println("Lütfen bir menü seçiniz: ");
-//
-//            int choice = scanner.nextInt();
-//            scanner.nextLine();
-//
-//            switch (choice) {
-//                case 1:
-//                    System.out.println("Kitap ekleme menüsü aktif.");
-//                    library.addBook(new Book(1L, "Oğuz Atay", "Tutunamayanlar") {
-//                    });
-//                    library.addBook(new Book(2L, "George Orwell", "1984") {
-//                    });
-//                    library.addBook(new Book(3L, "Anthony Burgess", "Otomatik Portakal") {
-//                    });
-//                    break;
-//                case 2:
-//                    System.out.println("Kitap seçme menüsü aktif.");
-//                    break;
-//                case 3:
-//                    System.out.println("Kitap güncelleme menüsü aktif.");
-//                    break;
-//                case 9:
-//                    running = false;
-//                    System.out.println("Programdan çıkılıyor.");
-//                    break;
-//                default:
-//                    System.out.println("Geçersiz seçim.");
-//            }
-//
-//        }
-//
-//        scanner.close();
+        boolean isRunning = true;
 
+        System.out.println("📚 " + Library.NAME + " Kütüphane Yönetim Sistemi'ne hoş geldiniz! 📚");
 
-//        while (running) {
-//            System.out.println("---------------------------------");
-//            System.out.println(Library.NAME + " Kütüphane Yönetim Sistemi'ne Hoş Geldiniz!");
-//            System.out.println("------");
-//            System.out.println("1. Personel Girişi: ");
-//            System.out.println("2. Kullanıcı Girişi: ");
-//            System.out.println("---------------------------------");
-//
-//            int choice = scanner.nextInt();
-//            scanner.nextLine();
-//
-//            switch (choice) {
-//                case 1:
-//                    System.out.println("Lütfen kullanıcı adı ve şifrenizi giriniz: ");
-//
-//                    break;
-//                case 2:
-//                    System.out.println("Kitap seçme menüsü aktif.");
-//                    break;
-//                default:
-//                    System.out.println("Geçersiz seçim.");
-//            }
-//
-//        }
-//
-//        scanner.close();
+        while(isRunning) {
+            showMenu();
+            int choice = getUserChoice();
+
+            switch (choice) {
+                case 1:
+                    addNewBook();
+                    System.out.println("\nKütüphanedeki kitaplar ");
+                    library.showBook();
+                    break;
+                case 2:
+                    getAllBooks();
+                    break;
+                case 3:
+                    searchBookById();
+                    break;
+                case 4:
+                    searchBookByName();
+                    break;
+                case 5:
+                    searchBookByCategory();
+                    break;
+                case 6:
+                    searchBookByAuthor();
+                    break;
+                case 0:
+                    isRunning = false;
+                    System.out.println("Çıkış yapılıyor!");
+                    break;
+                default:
+                    System.out.println("Geçersiz bir seçim yaptınız. Lütfen tekrar deneyin!");
+            }
+
+        }
+
+        scanner.close();
+    }
+
+    private static void showMenu() {
+        System.out.println("\nLütfen yapmak istediğiniz işlemi seçin:");
+        System.out.println("1 - Yeni kitap ekle");
+        System.out.println("2 - Tüm Kitapları Listele");
+        System.out.println("3 - Kitap ara (ID ile)");
+        System.out.println("4 - Kitap ara (İsim ile)");
+        System.out.println("5 - Kategorinin Tüm Kitaplarını Listele");
+        System.out.println("6 - Yazarın Tüm Kitaplarını Listele");
+        System.out.println("0 - Çıkış");
+
+//       System.out.println("3. Kitap Bilgilerini Güncelle: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
+//       System.out.println("4. Kitap Sil: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
+//       System.out.println("7. Kitabı Ödünç Al: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
+//       System.out.println("8. Kitabı Teslim Et: (ID, İsim veya Yazar bilgisi girilmelidir!) ");
 
     }
+
+    private static int getUserChoice() {
+        System.out.print("Seçiminiz: ");
+        return Integer.parseInt(scanner.nextLine());
+    }
+
+    private static void addNewBook() {
+        System.out.println("--- Yeni Kitap Ekle ---");
+
+        System.out.print("Kitap ID: ");
+        long id = Long.parseLong(scanner.nextLine());
+
+        System.out.print("Kitap Adı: ");
+        String name = scanner.nextLine();
+
+        System.out.print("Yazar Adı: ");
+        String authorName = scanner.nextLine();
+        // Yeni bir Author nesnesi oluşturuyoruz. (Mevcut bir yazar listesi istersen, onu kontrol edebilirsin.)
+        Author author = new Author(authorName);
+
+        System.out.print("Fiyat: ");
+        int price = Integer.parseInt(scanner.nextLine());
+
+        System.out.print("Baskı (Edition): ");
+        int edition = Integer.parseInt(scanner.nextLine());
+
+        System.out.println("Kitap Türü Seçiniz:");
+        System.out.println("1 - Journal");
+        System.out.println("2 - StudyBook");
+        System.out.println("3 - Magazine");
+        int type = Integer.parseInt(scanner.nextLine());
+
+        Book newBook = null;
+        switch (type) {
+            case 1:
+                newBook = new Journals(id, author, name, price, edition);
+                break;
+            case 2:
+                newBook = new StudyBooks(id, author, name, price, edition);
+                break;
+            case 3:
+                newBook = new Magazines(id, author, name, price, edition);
+                break;
+            default:
+                System.out.println("Geçersiz kitap türü seçildi.");
+                return;
+        }
+
+        // Kitabı yazara ekle (Author sınıfında addBook metodunun var olduğunu varsayıyoruz.)
+        author.addNewBook(newBook);
+
+        // Kitabı kütüphaneye ekle
+        library.addNewBook(newBook);
+
+        System.out.println("Kitap başarıyla eklendi:\n" + newBook);
+    }
+
+    private static void getAllBooks() {
+        System.out.println("Tüm kitaplar listeleniyor...");
+        library.showBook();
+    }
+
+    private static void searchBookById() {
+
+        System.out.println("Kitap ID giriniz: ");
+        long id = Long.parseLong(scanner.nextLine());
+        Book book = library.getBookById(id);
+
+        if (book != null) {
+            System.out.println("Kitap bulundu:\n" + book);
+        } else {
+            System.out.println("ID ile eşleşen kitap bulunamadı.");
+        }
+
+    }
+
+    private static void searchBookByName() {
+        System.out.print("Kitap ismi giriniz: ");
+        String name = scanner.nextLine();
+        List<Book> books = library.getBookByName(name);
+
+        if(books.isEmpty()) {
+            System.out.println("İsim ile eşleşen herhangi bir kitap bulunamadı.");
+        }else {
+            System.out.println("Eşleşen Kitaplar: ");
+            library.showBook(books);
+        }
+    }
+
+    private static void searchBookByCategory() {
+        System.out.println("Kitap Türü Seçiniz:");
+        System.out.println("1 - Journal");
+        System.out.println("2 - StudyBook");
+        System.out.println("3 - Magazine");
+
+        List<Book> matching = null;
+
+        int categoryChoice = Integer.parseInt(scanner.nextLine());
+
+        Class<?> categoryClass = switch (categoryChoice) {
+            case 1 -> StudyBooks.class;
+            case 2 -> Journals.class;
+            case 3 -> Magazines.class;
+            default -> null;
+        };
+
+        if (categoryClass == null) {
+            System.out.println("Geçersiz kategori seçimi!");
+        } else {
+            List<Book> filteredBooks = library.getBooks().values().stream()
+                    .filter(book -> categoryClass.isInstance(book))
+                    .toList();
+
+            if (filteredBooks.isEmpty()) {
+                System.out.println("Bu kategoriye ait kitap bulunamadı.");
+            } else {
+                filteredBooks.forEach(System.out::println);
+            }
+        }
+
+    }
+
+    private static void searchBookByAuthor() {
+        System.out.print("Yazar ismi giriniz: ");
+        String authorName = scanner.nextLine();
+        List<Book> books = library.getBookByAuthor(authorName);
+
+        if(books.isEmpty()) {
+            System.out.println("Yazar ile eşleşen herhangi bir kitap bulunamadı.");
+        }else {
+            System.out.println("Yazara Ait Kitaplar: ");
+            library.showBook(books);
+        }
+
+    }
+
 }

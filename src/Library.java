@@ -117,6 +117,7 @@ public class Library {
         for (Book book: books.values()) {
             if(book.getAuthor().getName().trim().equalsIgnoreCase(author.trim())) {
                 matching.add(book);
+//                book.getAuthor().addNewBook(book);
             }
         }
         return matching;

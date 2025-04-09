@@ -36,9 +36,9 @@ public class Author extends Person{
 
     @Override
     public String toString() {
-        return "Author{name='" +
+        return "Author { name=' " +
                 getName() +
-                "booksWritten=" + booksWritten.size() +
+                " booksWritten= " + booksWritten.size() +
                 '}';
     }
 }
